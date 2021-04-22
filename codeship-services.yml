@@ -1,7 +1,11 @@
+lastpass-aws-login-p39:
+  build:
+    image: lastpass-aws-login-p39
+    dockerfile: p39.Dockerfile
 lastpass-aws-login-p38:
   build:
-    image: lastpass-aws-login-p37
-    dockerfile: p37.Dockerfile
+    image: lastpass-aws-login-p38
+    dockerfile: p38.Dockerfile
 lastpass-aws-login-p37:
   build:
     image: lastpass-aws-login-p37
