@@ -1,5 +1,6 @@
 """setuptools installation script"""
 import io
+import sys
 from os import path
 
 from setuptools import setup, find_packages
@@ -8,6 +9,19 @@ from setuptools import setup, find_packages
 with io.open(path.join(path.abspath(path.dirname(__file__)), 'README.md'),
              encoding='utf-8') as readme:
     LONG_DESCRIPTION = readme.read()
+
+if sys.version_info[0] == 2:
+    python2_or_3_deps = ['importlib-metadata==2.1.1', 'decorator==4.4.2']
+    python2_or_3_test_deps = ['pytest==4.6.11', 'pytest-mock==1.13.0', 'mock==3.0.5']
+elif sys.version_info[0] == 3:
+    python2_or_3_deps = []
+    python2_or_3_test_deps = ['pytest-mock', 'mock']
+    if sys.version_info[1] == 5:
+        python2_or_3_test_deps.insert(0, "pytest==6.1.2")
+        python2_or_3_test_deps.append('importlib-metadata==2.1.1')
+    else:
+        python2_or_3_test_deps.insert(0, "pytest")
+
 
 setup(
     name='lastpass-aws-login',
@@ -26,7 +40,7 @@ setup(
         'threadlocal-aws==0.8',
         'requests>=2.22.0"',
         'future',
-    ],
+    ] + python2_or_3_deps,
     entry_points={
         'console_scripts': [
             'lastpass-aws-login=lastpass_aws_login.main:main'
@@ -45,13 +59,7 @@ setup(
         'Programming Language :: Python :: 3.7'
     ],
     tests_require=[
-        "pytest==4.6.5",
-        "pytest-mock==1.10.4",
-        "pytest-cov==2.7.1",
-        "requests-mock==1.6.0",
-        "pytest-runner",
-        "mock==3.0.5",
-        "cryptography==3.3.2",
-    ],
+        "requests-mock==1.8.0",
+    ] + python2_or_3_test_deps,
     test_suite="tests",
 )
