@@ -1,0 +1,13 @@
+- name: ci
+  type: parallel
+  steps:
+  - service: lastpass-aws-login-p38
+    command: pytest --cov=lastpass_aws_login
+  - service: lastpass-aws-login-p37
+    command: pytest --cov=lastpass_aws_login
+  - service: lastpass-aws-login-p36
+    command: pytest --cov=lastpass_aws_login
+  - service: lastpass-aws-login-p35
+    command: pytest --cov=lastpass_aws_login
+  - service: lastpass-aws-login-p27
+    command: pytest --cov=lastpass_aws_login

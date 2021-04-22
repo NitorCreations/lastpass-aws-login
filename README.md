@@ -1,15 +1,17 @@
 # aws-lp: AWS LastPass CLI
 
-[![PyPI version](https://badge.fury.io/py/aws-lp.svg)](https://badge.fury.io/py/aws-lp)
+[![PyPI version](https://badge.fury.io/py/lastpass-aws-login.svg)](https://badge.fury.io/py/lastpass-aws-login)
 
 Tool for using AWS CLI with LastPass SAML.
+
+LastPass code from here: https://github.com/omnibrian/aws-lp, SAML and profile management code mostly from here: https://github.com/NitorCreations/adfs-aws-login
 
 ## Installation
 
 This tool is published on pypi.org:
 
 ```
-pip install aws-lp
+pip install lastpass-aws-login
 ```
 
 ## Usage
