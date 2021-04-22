@@ -8,7 +8,7 @@ from os import environ
 from builtins import input
 from getpass import getpass
 
-from lastpass_aws_login import __version__, credentials
+from lastpass_aws_login import credentials
 from lastpass_aws_login.conf import init
 from lastpass_aws_login.exceptions import (LastPassCredentialsError, LastPassError,
                                LastPassIncorrectOtpError)
