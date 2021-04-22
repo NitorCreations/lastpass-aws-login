@@ -20,25 +20,16 @@ setup(
     url='https://github.com/NitorCreations/lastpass-aws-login',
     license='GPLv3',
     keywords='lastpass aws awscli boto3',
-    packages=find_packages(exclude=['contrib', 'docs', 'tests']),
+    packages=['lastpass_aws_login'],
+    setup_requires=["pytest-runner"],
     install_requires=[
         'threadlocal-aws==0.8',
         'requests>=2.22.0"',
         'future',
     ],
-    tests_require=[
-        "pytest==4.6.5",
-        "pytest-mock==1.10.4",
-        "pytest-cov==2.7.1",
-        "requests-mock==1.6.0",
-        "pytest-runner",
-        "mock==3.0.5",
-        "cryptography==3.3.2",
-    ],
-    test_suite="tests",
     entry_points={
         'console_scripts': [
-            'lastpass-aws-login=aws_lp.main:main'
+            'lastpass-aws-login=lastpass_aws_login.main:main'
         ]
     },
     classifiers=[
@@ -52,5 +43,15 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7'
-    ]
+    ],
+    tests_require=[
+        "pytest==4.6.5",
+        "pytest-mock==1.10.4",
+        "pytest-cov==2.7.1",
+        "requests-mock==1.6.0",
+        "pytest-runner",
+        "mock==3.0.5",
+        "cryptography==3.3.2",
+    ],
+    test_suite="tests",
 )

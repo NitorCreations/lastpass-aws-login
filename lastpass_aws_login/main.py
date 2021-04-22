@@ -8,12 +8,12 @@ from os import environ
 from builtins import input
 from getpass import getpass
 
-from aws_lp import __version__, credentials
-from aws_lp.conf import init
-from aws_lp.exceptions import (LastPassCredentialsError, LastPassError,
+from lastpass_aws_login import __version__, credentials
+from lastpass_aws_login.conf import init
+from lastpass_aws_login.exceptions import (LastPassCredentialsError, LastPassError,
                                LastPassIncorrectOtpError)
-from aws_lp.lastpass import LastPass
-from aws_lp.utils import binary_type, get_saml_aws_roles
+from lastpass_aws_login.lastpass import LastPass
+from lastpass_aws_login.utils import binary_type, get_saml_aws_roles
 
 from threadlocal_aws.clients import sts
 
@@ -28,7 +28,7 @@ def main():
     conf = init()
 
     if conf.VERBOSE:
-        logging.getLogger('aws_lp').setLevel(logging.DEBUG)
+        logging.getLogger('lastpass_aws_login').setLevel(logging.DEBUG)
 
 
     username = None

@@ -1,5 +1,5 @@
-import aws_lp.conf as config
-import aws_lp.credentials as credentials
+import lastpass_aws_login.conf as config
+import lastpass_aws_login.credentials as credentials
 import pytest
 from datetime import datetime
 

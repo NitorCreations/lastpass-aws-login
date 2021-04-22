@@ -12,7 +12,7 @@ from xml.etree import ElementTree
 import requests
 import six
 
-from aws_lp.exceptions import (LastPassCredentialsError, LastPassUnknownError,
+from lastpass_aws_login.exceptions import (LastPassCredentialsError, LastPassUnknownError,
                                LastPassIncorrectYubikeyPasswordError,
                                LastPassIncorrectGoogleAuthenticatorCodeError)
 

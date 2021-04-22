@@ -1,4 +1,4 @@
-from aws_lp import conf
+from lastpass_aws_login import conf
 import pytest
 import argparse
 
@@ -15,6 +15,8 @@ args = {
     "no_prompt": False,
     "duration": None,
     "role": None,
+    "verbose": None,
+    "saml_id": None,
 }
 
 params = {
@@ -42,22 +44,11 @@ def test_init(args_patched, aws_config_patched):
     _verify_config(args, params)
 
 
-def test_init_missing_login_url(args_patched, aws_config_patched_without_login_url):
-    with pytest.raises(SystemExit) as pytest_wrapped_e:
-        config = conf.init()
-    assert pytest_wrapped_e.type == SystemExit
-    assert pytest_wrapped_e.value.code == 1
-    for mock in aws_config_patched_without_login_url:
-        mock.call_count == 1
-    args_patched.call_count == 1
-
-
 def _verify_config(args, params):
     config = conf.init()
     assert config.PROFILE == args["profile"]
     assert config.CONFIG_PROFILE == "profile {}".format(args["profile"])
-    assert config.ROLE_ARN == params["adfs_role_arn"]
-    assert config.ADFS_LOGIN_URL == params["adfs_login_url"]
+    assert config.ROLE_ARN == params["lastpass_role_arn"]
     assert config.NO_PROMPT == args["no_prompt"]
 
 
@@ -71,18 +62,6 @@ def args_patched(mocker):
 @pytest.fixture
 def aws_config_patched(mocker):
     mock1 = mocker.patch("configparser.ConfigParser.__getitem__", return_value=params)
-    mock2 = mocker.patch("configparser.ConfigParser.read", return_value=None)
-    mock3 = mocker.patch("configparser.ConfigParser.has_section", return_value=True)
-    return mock1, mock2, mock3
-
-
-@pytest.fixture
-def aws_config_patched_without_login_url(mocker):
-    newparams = params.copy()
-    newparams.pop("adfs_login_url")
-    mock1 = mocker.patch(
-        "configparser.ConfigParser.__getitem__", return_value=newparams
-    )
     mock2 = mocker.patch("configparser.ConfigParser.read", return_value=None)
     mock3 = mocker.patch("configparser.ConfigParser.has_section", return_value=True)
     return mock1, mock2, mock3
