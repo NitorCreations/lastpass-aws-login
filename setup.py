@@ -17,6 +17,7 @@ elif sys.version_info[0] == 3:
     python2_or_3_deps = []
     python2_or_3_test_deps = ['pytest-mock', 'mock']
     if sys.version_info[1] == 5:
+        python2_or_3_deps = ["boto3==1.16.63"]
         python2_or_3_test_deps.insert(0, "pytest==6.1.2")
         python2_or_3_test_deps.append('importlib-metadata==2.1.1')
     else:
@@ -60,6 +61,7 @@ setup(
     ],
     tests_require=[
         "requests-mock==1.8.0",
+        "pytest-cov==2.11.1",
     ] + python2_or_3_test_deps,
     test_suite="tests",
 )
