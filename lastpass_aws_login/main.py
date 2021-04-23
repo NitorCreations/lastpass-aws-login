@@ -42,17 +42,21 @@ def main():
         else:
             print("Need to give username")
             sys.exit(1)
+    otp = None
     if "LASTPASS_DEFAULT_PASSWORD" in environ and environ["LASTPASS_DEFAULT_PASSWORD"]:
         password = environ["LASTPASS_DEFAULT_PASSWORD"]
     else:
         password = getpass()
+    if "LASTPASS_DEFAULT_OTP" in environ and environ["LASTPASS_DEFAULT_OTP"]:
+        otp = environ["LASTPASS_DEFAULT_OTP"]
+
 
     username = binary_type(username)
     password = binary_type(password)
     lastpass_session = LastPass('https://lastpass.com')
 
     try:
-        lastpass_session.login(username, password)
+        lastpass_session.login(username, password, otp=otp)
     except LastPassIncorrectOtpError:
         mfa = input('MFA: ')
 
