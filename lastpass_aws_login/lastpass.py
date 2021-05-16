@@ -43,11 +43,11 @@ class LastPass(object):
         LOGGER.debug('[session_get] Sending GET request to %s', url)
         return self.__session.get(url, verify=self.__should_verify())
 
-    def __session_post(self, url, data=None):
+    def __session_post(self, url, headers=None, data=None):
         """Send POST request through internal requests session."""
         LOGGER.debug('[session_post] Sending POST request to %s', url)
         return self.__session.post(
-            url, data=data, verify=self.__should_verify())
+            url, data=data, headers=headers, verify=self.__should_verify())
 
     @staticmethod
     def __extract_form(html):
@@ -160,9 +160,8 @@ class LastPass(object):
 
         if client_id:
             params['imei'] = client_id
-
-        response = self.__session_post(login_url, data=params)
-
+        headers = {'User-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36'}
+        response = self.__session_post(login_url, headers=headers, data=params)
         if response.status_code != 200:
             LOGGER.debug('[login] Non 200 response from LastPass login: %d',
                          response.status_code)
