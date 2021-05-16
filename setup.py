@@ -26,7 +26,7 @@ elif sys.version_info[0] == 3:
 
 setup(
     name='lastpass-aws-login',
-    version="0.1.3",
+    version="0.1.4",
     description='Tool for using AWS CLI with LastPass SAML',
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
