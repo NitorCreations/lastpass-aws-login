@@ -1,4 +1,4 @@
-# aws-lp: AWS LastPass CLI
+# `lastpass-aws-login`: AWS LastPass SAML CLI
 
 [![PyPI version](https://badge.fury.io/py/lastpass-aws-login.svg)](https://badge.fury.io/py/lastpass-aws-login)
 [![Codeship Status for NitorCreations/lastpass-aws-login](https://app.codeship.com/projects/c0fb24eb-34be-4ec3-ae3b-5254134b44c9/status?branch=master)](https://app.codeship.com/projects/442687)
