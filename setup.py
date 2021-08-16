@@ -38,7 +38,7 @@ setup(
     packages=['lastpass_aws_login'],
     setup_requires=["pytest-runner"],
     install_requires=[
-        'threadlocal-aws==0.9',
+        'threadlocal-aws==0.10',
         'requests>=2.22.0"',
         'future',
     ] + python2_or_3_deps,
